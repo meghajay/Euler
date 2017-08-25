@@ -45,12 +45,30 @@ print "solution for fibonacii series upto 4 million is {}".format(solution)
 #What is the largest prime factor of the number 600851475143 ?
 
 #solution1:
+import math
+n = 600851475143
+if n % 2 == 0:
+    lastFactor=2
+    n=n/2
+    while n%2==0:
+        n=n/2
+else:
+    lastFactor=1
+factor=3
 
-num = 600851475143
-pf = []
-pf.append(2)  if num % 2 == 0 else None
+maxfactor = math.sqrt(n)
 
-pf.append(val) if num % val == 0 and val % 2 == 0
+while n > 1 and factor <= maxfactor:
+    if n % factor == 0:
+        n = n / factor
+        lastfactor = factor
+        while n % factor == 0:
+            n = n/factor
+        maxfactor = math.sqrt(n)
+    factor = factor + 2
+
+
+print "lastfactor is {}".format(lastfactor)
 
 
 
