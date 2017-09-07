@@ -4,17 +4,19 @@ __author__ = 'mani'
 #problem1:If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
 #Find the sum of all the multiples of 3 or 5 below 1000.
 #solution1:straight forward method
-sum = 0
-for i in range(1,1000):
-    if i % 3 == 0 or i % 5 == 0:
-        sum += i
+def natural1A():
+    sum = 0
+    for i in range(1,1000):
+        if i % 3 == 0 or i % 5 == 0:
+            sum += i
 
-print "soln1. sum of all the multiples of 3 or 5 below 10 is {}".format(sum)
+    print "soln1. sum of all the multiples of 3 or 5 below 10 is {}".format(sum)
 
 
 ##solution2:using list comprehensions and lambda, for some reason sum(list) is not working
-val =reduce(lambda a,b: a+b,[i for i in range(1,1000) if (i%3 == 0 or i%5 == 0)])
-print "soln2. sum of all the multiples of 3 or 5 below 10 is {}".format(val)
+def natural1B():
+    val =reduce(lambda a,b: a+b,[i for i in range(1,1000) if (i%3 == 0 or i%5 == 0)])
+    print "soln2. sum of all the multiples of 3 or 5 below 10 is {}".format(val)
 
 
 
@@ -23,54 +25,71 @@ print "soln2. sum of all the multiples of 3 or 5 below 10 is {}".format(val)
 # find the sum of the even-valued terms.
 
 #solution1:find the fibonacci within 4 million(4000000)
-def fib(limit):
-    sum = 0
-    a = 1
-    b = 1
-    ll = []
-    while b < limit:
-        sum = a + b
-        a = b
-        b =sum
-        ll.append(sum) if sum%2 == 0 else None
-    print ll
-    return ll
+deg fibonacci2():
+    def fib(limit):
+        sum = 0
+        a = 1
+        b = 1
+        ll = []
+        while b < limit:
+            sum = a + b
+            a = b
+            b =sum
+            ll.append(sum) if sum%2 == 0 else None
+        print ll
+        return ll
 
-solution = reduce(lambda a,b: a+b,[val for val in fib(limit = 4000000)])
-print "solution for fibonacii series upto 4 million is {}".format(solution)
+    solution = reduce(lambda a,b: a+b,[val for val in fib(limit = 4000000)])
+    print "solution for fibonacii series upto 4 million is {}".format(solution)
 '''
-
+'''
 
 #problem3:The prime factors of 13195 are 5, 7, 13 and 29.
 #What is the largest prime factor of the number 600851475143 ?
 
 #solution1:
-import math
-n = 600851475143
-if n % 2 == 0:
-    lastFactor=2
-    n=n/2
-    while n%2==0:
+deg primefactor3():
+    import math
+    n = 600851475143
+    #n = 13195
+    if n % 2 == 0:
+        lastFactor=2
         n=n/2
-else:
-    lastFactor=1
-factor=3
+        while n%2==0:
+            n=n/2
+    else:
+        lastFactor=1
+    factor=3
 
-maxfactor = math.sqrt(n)
+    print lastFactor
 
-while n > 1 and factor <= maxfactor:
-    if n % factor == 0:
-        n = n / factor
-        lastfactor = factor
-        while n % factor == 0:
-            n = n/factor
-        maxfactor = math.sqrt(n)
-    factor = factor + 2
+    while n > 1:
+        if n % factor == 0:
+            n = n / factor
+            lastfactor = factor
+            print "++++++++++",lastfactor,n
+            while n % factor == 0:
+                n = n/factor
+        factor = factor + 2
+
+    print "lastfactor is {}".format(lastfactor)
+'''
+
+#problem4:A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009
+#91times99.
+#Find the largest palindrome made from the product of two 3-digit numbers.
+def palindrome4():
+    largestPalindrome = 0
 
 
-print "lastfactor is {}".format(lastfactor)
+    for i in range(999,90,-1):
+        for j in range(999,900,-1):
+                val = i * j
+                if (str(val) == str(val)[::-1]) and  (val > largestPalindrome):
+                    print i,j
+                    largestPalindrome = val
 
+    print "largerst plaindrome is {}".format(largestPalindrome)
+    return largestPalindrome
 
-
-
-
+palindrome4()
