@@ -74,7 +74,7 @@ deg primefactor3():
 
     print "lastfactor is {}".format(lastfactor)
 '''
-
+'''
 #problem4:A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009
 #91times99.
 #Find the largest palindrome made from the product of two 3-digit numbers.
@@ -93,3 +93,23 @@ def palindrome4():
     return largestPalindrome
 
 palindrome4()
+'''
+'''
+#problem5:2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
+#What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
+
+def small5():
+    num = 10
+    while num >= 0:
+        val = all(map(lambda y:num%y==0,[i for i in range(1,21)]))
+        if val:
+            print num
+            return num
+        num += 10
+
+if __name__ == '__main__':
+    import timeit
+    print(timeit.timeit(small5,number =1))
+'''
+
+
